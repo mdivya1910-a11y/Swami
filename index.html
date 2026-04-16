@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shri Swami Samarth</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: 'Georgia', serif;
+  }
+
+  /* Header */
+  .header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    padding: 18px 20px;
+    z-index: 10;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+  }
+
+  .header h1 {
+    font-family: 'Georgia', serif;
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    color: #f0a830;
+    text-shadow:
+      0 0 10px rgba(240,168,48,0.8),
+      0 0 25px rgba(240,168,48,0.5),
+      0 0 50px rgba(240,168,48,0.3);
+    animation: headerglow 2.5s ease-in-out infinite;
+  }
+
+  @keyframes headerglow {
+    0%, 100% { text-shadow: 0 0 10px rgba(240,168,48,0.8), 0 0 25px rgba(240,168,48,0.5), 0 0 50px rgba(240,168,48,0.3); }
+    50% { text-shadow: 0 0 20px rgba(255,200,80,1), 0 0 45px rgba(240,168,48,0.8), 0 0 80px rgba(240,168,48,0.5); }
+  }
+
+  /* Main container */
+  .scene {
+    position: relative;
+    width: 340px;
+    height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Outer glow ring */
+  .glow-ring {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 1px solid rgba(240,168,48,0.15);
+    animation: ringpulse 3s ease-in-out infinite;
+  }
+
+  .glow-ring:nth-child(2) {
+    width: 360px;
+    height: 360px;
+    animation-delay: 0.5s;
+    border-color: rgba(240,168,48,0.08);
+  }
+
+  .glow-ring:nth-child(3) {
+    width: 400px;
+    height: 400px;
+    animation-delay: 1s;
+    border-color: rgba(240,168,48,0.05);
+  }
+
+  @keyframes ringpulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.04); opacity: 1; }
+  }
+
+  /* Background halo glow */
+  .halo {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(240,168,48,0.12) 0%, rgba(200,120,20,0.06) 40%, transparent 70%);
+    animation: halopulse 3s ease-in-out infinite;
+  }
+
+  @keyframes halopulse {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.1); opacity: 1; }
+  }
+
+  /* Swami image */
+  .swami-wrap {
+    position: relative;
+    z-index: 5;
+    animation: float 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 15px rgba(240,168,48,0.6)) drop-shadow(0 0 35px rgba(200,120,20,0.3));
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .swami-wrap img {
+    width: 240px;
+    height: auto;
+    display: block;
+  }
+
+  /* Flowers container */
+  .flowers {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .flower {
+    position: absolute;
+    font-size: 18px;
+    animation: floatflower linear infinite;
+    opacity: 0;
+  }
+
+  /* Individual flower positions and timings */
+  .flower:nth-child(1)  { left: 8%;  animation-duration: 6s;  animation-delay: 0s;   font-size: 16px; }
+  .flower:nth-child(2)  { left: 18%; animation-duration: 7s;  animation-delay: 0.8s; font-size: 20px; }
+  .flower:nth-child(3)  { left: 28%; animation-duration: 5.5s; animation-delay: 1.5s; font-size: 14px; }
+  .flower:nth-child(4)  { left: 38%; animation-duration: 8s;  animation-delay: 0.3s; font-size: 18px; }
+  .flower:nth-child(5)  { left: 48%; animation-duration: 6.5s; animation-delay: 2s;   font-size: 22px; }
+  .flower:nth-child(6)  { left: 58%; animation-duration: 7.5s; animation-delay: 1s;   font-size: 16px; }
+  .flower:nth-child(7)  { left: 68%; animation-duration: 5s;  animation-delay: 2.5s; font-size: 20px; }
+  .flower:nth-child(8)  { left: 78%; animation-duration: 6s;  animation-delay: 0.5s; font-size: 14px; }
+  .flower:nth-child(9)  { left: 88%; animation-duration: 7s;  animation-delay: 1.8s; font-size: 18px; }
+  .flower:nth-child(10) { left: 12%; animation-duration: 8.5s; animation-delay: 3s;   font-size: 16px; }
+  .flower:nth-child(11) { left: 32%; animation-duration: 6s;  animation-delay: 3.5s; font-size: 20px; }
+  .flower:nth-child(12) { left: 52%; animation-duration: 7s;  animation-delay: 4s;   font-size: 14px; }
+  .flower:nth-child(13) { left: 72%; animation-duration: 5.5s; animation-delay: 4.5s; font-size: 18px; }
+  .flower:nth-child(14) { left: 92%; animation-duration: 6.5s; animation-delay: 2.2s; font-size: 16px; }
+  .flower:nth-child(15) { left: 42%; animation-duration: 8s;  animation-delay: 1.2s; font-size: 22px; }
+
+  @keyframes floatflower {
+    0%   { transform: translateY(100vh) rotate(0deg);   opacity: 0; }
+    10%  { opacity: 0.9; }
+    90%  { opacity: 0.7; }
+    100% { transform: translateY(-80px) rotate(360deg); opacity: 0; }
+  }
+
+  /* Sparkles */
+  .sparkle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #f0c040;
+    animation: sparkle linear infinite;
+    opacity: 0;
+  }
+
+  .sparkle:nth-child(1) { top: 20%; left: 15%; animation-duration: 2.5s; animation-delay: 0s; }
+  .sparkle:nth-child(2) { top: 35%; left: 80%; animation-duration: 3s;   animation-delay: 0.5s; }
+  .sparkle:nth-child(3) { top: 60%; left: 10%; animation-duration: 2s;   animation-delay: 1s; }
+  .sparkle:nth-child(4) { top: 15%; left: 70%; animation-duration: 3.5s; animation-delay: 1.5s; }
+  .sparkle:nth-child(5) { top: 75%; left: 85%; animation-duration: 2.5s; animation-delay: 0.8s; }
+  .sparkle:nth-child(6) { top: 50%; left: 5%;  animation-duration: 3s;   animation-delay: 2s; }
+
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 6px #f0c040, 0 0 12px #f0a830; }
+  }
+
+  /* Footer */
+  .footer {
+    position: fixed;
+    bottom: 16px;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(240,168,48,0.5);
+    letter-spacing: 0.1em;
+    z-index: 10;
+  }
+
+  /* Music button */
+  .music-btn {
+    position: fixed;
+    bottom: 40px;
+    left: 20px;
+    background: rgba(240,168,48,0.1);
+    border: 1px solid rgba(240,168,48,0.3);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 10;
+    transition: background 0.3s;
+  }
+
+  .music-btn:hover {
+    background: rgba(240,168,48,0.25);
+  }
+</style>
+</head>
+<body>
+
+<!-- Music -->
+<audio id="bg-music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Header -->
+<div class="header">
+  <h1>🪔 Shri Swami Samarth 🪔</h1>
+</div>
+
+<!-- Floating flowers all over screen -->
+<div class="flowers">
+  <div class="flower">🌼</div>
+  <div class="flower">🌸</div>
+  <div class="flower">🌼</div>
+  <div class="flower">🌸</div>
+  <div class="flower">🌼</div>
+  <div class="flower">🌸</div>
+  <div class="flower">🌼</div>
+  <div class="flower">🌸</div>
+  <div class="flower">🌼</div>
+  <div class="flower">🌸</div>
+  <div class="flower">🌼</div>
+  <div class="flower">🌸</div>
+  <div class="flower">🌼</div>
+  <div class="flower">🌸</div>
+  <div class="flower">🌼</div>
+</div>
+
+<!-- Sparkles -->
+<div class="sparkle"></div>
+<div class="sparkle"></div>
+<div class="sparkle"></div>
+<div class="sparkle"></div>
+<div class="sparkle"></div>
+<div class="sparkle"></div>
+
+<!-- Main Scene -->
+<div class="scene">
+  <div class="glow-ring"></div>
+  <div class="glow-ring"></div>
+  <div class="glow-ring"></div>
+  <div class="halo"></div>
+
+  <div class="swami-wrap">
+    <img src="swami.png" alt="Shri Swami Samarth"/>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">Built by M. Divya 🫰 · Deployed on GitHub Pages</div>
+
+<!-- Music Button -->
+<div class="music-btn" id="musicBtn" onclick="toggleMusic()">🔇</div>
+
+<script>
+  const music = document.getElementById('bg-music');
+  const btn = document.getElementById('musicBtn');
+  let playing = false;
+
+  document.body.addEventListener('click', function() {
+    if (!playing) {
+      music.play().catch(() => {});
+      playing = true;
+      btn.textContent = '🎵';
+    }
+  });
+
+  function toggleMusic() {
+    if (playing) {
+      music.pause();
+      playing = false;
+      btn.textContent = '🔇';
+    } else {
+      music.play();
+      playing = true;
+      btn.textContent = '🎵';
+    }
+  }
+</script>
+
+</body>
+</html>
