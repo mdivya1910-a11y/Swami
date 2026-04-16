@@ -136,4 +136,84 @@ body {
   left: 20px;
   padding: 8px 12px;
   border-radius: 20px;
-  font-size
+  font-size: 12px;
+  color: #f0a830;
+  background: rgba(240,168,48,0.1);
+  border: 1px solid rgba(240,168,48,0.3);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.music-btn:hover {
+  transform: scale(1.05);
+  background: rgba(240,168,48,0.25);
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="bg-music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>🪔 श्री स्वामी समर्थ 🪔</h1>
+</div>
+
+<!-- SCENE -->
+<div class="scene">
+  <div class="glow-ring"></div>
+  <div class="glow-ring"></div>
+  <div class="glow-ring"></div>
+  <div class="halo"></div>
+
+  <div class="swami-wrap">
+    <img src="swami.png" alt="Swami Samarth">
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  Built by- M. Divya🫰<br>
+  Deployed on- GitHub Pages
+</div>
+
+<!-- MUSIC BUTTON -->
+<div class="music-btn" id="musicBtn" onclick="toggleMusic()">Click me</div>
+
+<script>
+const music = document.getElementById("bg-music");
+const btn = document.getElementById("musicBtn");
+let playing = false;
+
+function updateUI() {
+  btn.textContent = playing ? "🎵" : "Click me";
+}
+
+function startMusic() {
+  if (playing) return;
+  music.play().then(() => {
+    playing = true;
+    updateUI();
+  }).catch(() => {});
+}
+
+function toggleMusic() {
+  if (playing) {
+    music.pause();
+    playing = false;
+  } else {
+    music.play();
+    playing = true;
+  }
+  updateUI();
+}
+
+document.body.addEventListener("click", startMusic, { once: true });
+</script>
+
+</body>
+</html>
